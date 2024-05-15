@@ -7,10 +7,6 @@
             @await Component.InvokeAsync(typeof(LanguageSelectorViewComponent))
             @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderSelectors })
         </div>
-        <div class="header-links-wrapper">
-            @await Component.InvokeAsync(typeof(HeaderLinksViewComponent))
-            @await Component.InvokeAsync(typeof(FlyoutShoppingCartViewComponent))
-        </div>
     </div>
     @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderMiddle })
     <div class="header-lower">
@@ -19,6 +15,10 @@
         </div>
         <div class="search-box store-search-box">
             @await Component.InvokeAsync(typeof(SearchBoxViewComponent))
+        </div>
+        <div class="header-links-wrapper">
+            @await Component.InvokeAsync(typeof(HeaderLinksViewComponent))
+            @await Component.InvokeAsync(typeof(FlyoutShoppingCartViewComponent))
         </div>
     </div>
     @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderAfter })
