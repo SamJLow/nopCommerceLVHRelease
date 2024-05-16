@@ -1,7 +1,14 @@
 ﻿<div class="header">
     @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderBefore })
+    @{
+        string topBannerText = @T("TopBanner.Text").ToString();
+        if (topBannerText != "none")
+        {
+            <div class="top-banner-text">@topBannerText</div>
+        }
+    }
     <div class="header-upper">
-        <div class="header-selectors-wrapper">
+        <div class="header-selectors-wrapper">            
             @await Component.InvokeAsync(typeof(TaxTypeSelectorViewComponent))
             @await Component.InvokeAsync(typeof(CurrencySelectorViewComponent))
             @await Component.InvokeAsync(typeof(LanguageSelectorViewComponent))
