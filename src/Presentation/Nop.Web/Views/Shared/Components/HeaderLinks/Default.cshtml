@@ -5,9 +5,9 @@
 <div class="header-links">
     <ul>
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderLinksBefore, additionalData = Model })
-        @if (Model.IsAuthenticated)
+@*         @if (Model.IsAuthenticated)
         {
-            <li><a href="@Url.RouteUrl("CustomerInfo")" class="ico-account">@T("Account.MyAccount")@*@Model.CustomerName*@</a></li>
+            <li><a href="@Url.RouteUrl("CustomerInfo")" class="ico-account">@T("Account.MyAccount")@Model.CustomerName</a></li>
             <li><a href="@Url.RouteUrl("Logout")" class="ico-logout">@T("Account.Logout")</a></li>
         }
         else
@@ -21,7 +21,41 @@
                 <li><a href="@Url.RouteUrl("Register", new { returnUrl })" class="ico-register">@T("Account.Register")</a></li>
             }
             <li><a href="@Url.RouteUrl("Login", new { returnUrl })" class="ico-login">@T("Account.Login")</a></li>
+        } *@
+
+        @if (Model.IsAuthenticated)
+        {
+            <li class="dropdown">
+                <a href=# class="dropdown-toggle" id="accountDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="ico-account"></i> @T("Account.AccountLink")
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                    <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
+                    <li><a href="@Url.RouteUrl("Logout")">@T("Account.Logout")</a></li>
+                </ul>
+            </li>
         }
+        else
+        {
+            var returnUrl = Context.Request.Query.TryGetValue("returnUrl", out var url) && !StringValues.IsNullOrEmpty(url)
+            ? url.ToString()
+            : webHelper.GetRawUrl(Context.Request);
+            <li class="dropdown">
+                <a href=# class="dropdown-toggle" id="accountDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="ico-account"></i> @T("Account.AccountLink")
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                    if (Model.RegistrationType != UserRegistrationType.Disabled)
+                    {
+                    <li><a href="@Url.RouteUrl("Register", new { returnUrl })" class="ico-register">@T("Account.Register")</a></li>
+                    }
+                    <li><a href="@Url.RouteUrl("Login", new { returnUrl })" class="ico-login">@T("Account.Login")</a></li>
+                </ul>
+            </li>
+
+        }
+
+
         @if (Model.AllowPrivateMessages)
         {
             <li>
