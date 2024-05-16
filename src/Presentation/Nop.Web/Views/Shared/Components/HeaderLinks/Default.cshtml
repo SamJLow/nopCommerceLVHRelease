@@ -45,7 +45,7 @@
                     <i class="ico-account"></i> @T("Account.AccountLink")
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="accountDropdown">
-                    if (Model.RegistrationType != UserRegistrationType.Disabled)
+                    @if (Model.RegistrationType != UserRegistrationType.Disabled)
                     {
                     <li><a href="@Url.RouteUrl("Register", new { returnUrl })" class="ico-register">@T("Account.Register")</a></li>
                     }
