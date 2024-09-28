@@ -14,7 +14,7 @@
     <div class="page-body">
         @await Component.InvokeAsync(typeof(TopicBlockViewComponent), new { systemName = "ContactUs" })
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContactUsTop, additionalData = Model })
-        @if (Model.SuccessfullySent)
+        @* //Uncomment to add contact us form. @if (Model.SuccessfullySent)
         {
             <div class="result">
                 @Model.Result
@@ -63,7 +63,7 @@
                     <button type="submit" name="send-email" class="button-1 contact-us-button">@T("ContactUs.Button")</button>
                 </div>
             </form>
-        }
+        } *@
         @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContactUsBottom, additionalData = Model })
     </div>
 </div>
